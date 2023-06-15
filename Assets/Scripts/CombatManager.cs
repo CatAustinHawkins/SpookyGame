@@ -1,13 +1,14 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class CombatManager : MonoBehaviour
 {
-    public float PlayerDamage = 10;
+    public float PlayerDamage = 20;
     public float PlayerHealth;
 
-    public float EnemyDamage;
+    public float EnemyDamage = 10;
     public float EnemyHealth;
     public float EnemyPacificity;
 
@@ -35,28 +36,22 @@ public class CombatManager : MonoBehaviour
     public bool EnemysTurn;
     public bool PlayersTurn;
 
+    public bool AndiFighting;
+    public bool ToxFighting;
+    public bool FayFighting;
 
-    void Update()
-    {
-        if(timeractive)
-        {
-            timer = timer + 1 * Time.deltaTime;
-        }
+    public bool Enemy1Fighting;
+    public bool Enemy2Fighting;
+    public bool Enemy3Fighting;
 
-        if(timer > 2)
-        {
-            timeractive = false;
-            FightUpdate.text = " ";
-            EnemyTurn();
-            timer = 0;
-        }
-    }
+
+    Coroutine coroutine;
 
     public void CombatBegin()
     {
         CombatUI.SetActive(true);
 
-        if(Random.Range(1,3) > 1)
+        if (Random.Range(1, 3) > 1)
         {
             PlayersTurn = true;
             EnemysTurn = false;
@@ -65,7 +60,7 @@ public class CombatManager : MonoBehaviour
         {
             PlayersTurn = false;
             EnemysTurn = true;
-            timeractive = true;
+            coroutine = StartCoroutine(CountdownTimer());
         }
     }
 
@@ -90,7 +85,7 @@ public class CombatManager : MonoBehaviour
     public void ActButton()
     {
         EnemyPacificity = EnemyPacificity + Random.Range(35, 100);
-        if(EnemyPacificity == 100 || EnemyPacificity > 100)
+        if (EnemyPacificity == 100 || EnemyPacificity > 100)
         {
             CombatEnd();
         }
@@ -113,11 +108,11 @@ public class CombatManager : MonoBehaviour
 
     public void SpareButton()
     {
-        if(Random.Range(1, 3) > 1)
+        if (Random.Range(1, 3) > 1)
         {
             CombatEnd();
         }
-        
+
         FightUpdate.text = "Unsuccessful!";
 
         EnemysTurn = true;
@@ -145,9 +140,9 @@ public class CombatManager : MonoBehaviour
 
     public void RoundChange()
     {
-        if(EnemysTurn)
+        if (EnemysTurn)
         {
-            timeractive = true;
+            coroutine = StartCoroutine(CountdownTimer());
             EnemyTurnUI.SetActive(true);
             PlayerTurnUI.SetActive(false);
             FightButtonUI.interactable = false;
@@ -156,7 +151,7 @@ public class CombatManager : MonoBehaviour
             SpareButtonUI.interactable = false;
         }
 
-        if(PlayersTurn)
+        if (PlayersTurn)
         {
             EnemyTurnUI.SetActive(false);
             PlayerTurnUI.SetActive(true);
@@ -175,5 +170,12 @@ public class CombatManager : MonoBehaviour
         PlayersTurn = true;
         EnemysTurn = false;
         RoundChange();
+    }
+
+    IEnumerator CountdownTimer()
+    {
+        yield return new WaitForSeconds(2);
+        FightUpdate.text = " ";
+        EnemyTurn();
     }
 }

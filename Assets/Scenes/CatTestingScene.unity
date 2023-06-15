@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a988a91c9c538f428af2330d6985021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
 --- !u!54 &131969695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5363,6 +5364,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5436,6 +5438,39 @@ Transform:
   m_Father: {fileID: 131969697}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 13.205, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &982682135
 GameObject:
   m_ObjectHideFlags: 0
@@ -8207,18 +8242,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14923c0ebd89b154a8790765b443ffea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerAttackSpeed: 5
   PlayerDamage: 20
   PlayerHealth: 100
   EnemyDamage: 10
   EnemyHealth: 100
   EnemyPacificity: 0
   Experience: 0
-  randomnumber: 0
   timer: 0
   timeractive: 0
   EnemyHealthText: {fileID: 379639466}
   PlayerHealthText: {fileID: 298624308}
+  FightUpdate: {fileID: 1513094525}
   PlayerTurnUI: {fileID: 1181885546}
   EnemyTurnUI: {fileID: 1953443400}
   CombatUI: {fileID: 1234956225}
@@ -8228,7 +8262,12 @@ MonoBehaviour:
   SpareButtonUI: {fileID: 527469023}
   EnemysTurn: 0
   PlayersTurn: 0
-  FightUpdate: {fileID: 1513094525}
+  AndiFighting: 0
+  ToxFighting: 0
+  FayFighting: 0
+  Enemy1Fighting: 0
+  Enemy2Fighting: 0
+  Enemy3Fighting: 0
 --- !u!4 &1504888487
 Transform:
   m_ObjectHideFlags: 0
